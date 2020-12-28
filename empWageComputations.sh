@@ -18,10 +18,9 @@ do
 			totalSalary=$(( totalSalary+partTimeHours*empRatePerHr))
                         ;;
                 *)
-			totlSalary=$(( totalSalary+absentHours*empRatePerHr ))
+			totalSalary=$(( totalSalary+absentHours*empRatePerHr ))
 			;;
         esac
 days=$(( days+1 ))
 done
-totalsalary=$(( empHrs*empRatePerHr))
 
