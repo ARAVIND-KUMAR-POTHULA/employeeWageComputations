@@ -7,17 +7,22 @@ absentHours=0
 empRatePerHr=20
 numWorkingDays=20
 days=1
-while [[ $days -le $numWorkingDays ]]
+maxHours=100
+empHours=0
+while [[ $days -le $numWorkingDays && $empHours -le $maxHours ]]
 do
         empCheck=$((RANDOM%3))
         case $empCheck in
                 $isFullTime)
+			empHours=$(( empHours+fullTimeHours ))
 			totalSalary=$(( totalSalary+fullTimeHours*empRatePerHr))
                         ;;
                 $isPartTime)
+			 empHours=$(( empHours+partTimeHours ))
 			totalSalary=$(( totalSalary+partTimeHours*empRatePerHr))
                         ;;
                 *)
+			 empHours=$(( empHours+absentHours ))
 			totalSalary=$(( totalSalary+absentHours*empRatePerHr ))
 			;;
         esac
