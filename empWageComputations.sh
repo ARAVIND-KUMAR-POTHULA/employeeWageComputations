@@ -9,23 +9,26 @@ numWorkingDays=20
 days=1
 maxHours=100
 empHours=0
+function empWorkHours() {
+	local empCheck=$1
+	 case $empCheck in
+                $isFullTime)
+                        empHours=$(( empHours+fullTimeHours ))
+                        ;;
+                $isPartTime)
+                         empHours=$(( empHours+partTimeHours ))
+                        ;;
+                *)
+                         empHours=$(( empHours+absentHours ))
+                        ;;
+        esac
+echo $empHours
+}
 while [[ $days -le $numWorkingDays && $empHours -le $maxHours ]]
 do
         empCheck=$((RANDOM%3))
-        case $empCheck in
-                $isFullTime)
-			empHours=$(( empHours+fullTimeHours ))
-			totalSalary=$(( totalSalary+fullTimeHours*empRatePerHr))
-                        ;;
-                $isPartTime)
-			 empHours=$(( empHours+partTimeHours ))
-			totalSalary=$(( totalSalary+partTimeHours*empRatePerHr))
-                        ;;
-                *)
-			 empHours=$(( empHours+absentHours ))
-			totalSalary=$(( totalSalary+absentHours*empRatePerHr ))
-			;;
-        esac
-days=$(( days+1 ))
+	empHours="$( empWorkHours $empCheck )"
+	days=$(( days+1 ))
 done
+totalSalary=$(( empHours*empRatePerHr ))
 
