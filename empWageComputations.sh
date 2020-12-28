@@ -6,12 +6,13 @@ wagePerHour=20
 fullTimeHours=12
 partTimeHours=8
 employeeCheck=$(( RANDOM%3 ))
-	if (( $employeeCheck==$isFullTime ))
-	then
+	case $employeeCheck in 
+	$isFullTime)
 		dailyWage=$(( wagePerHour*fullTimeHours ))
-	elif (( $employeeCheck==$isPartTime ))
-        then
+		;;
+	$isPartTime)
                 dailyWage=$(( wagePerHour*partTimeHours ))
-	else
+		;;
+		*)
 		dailyWage=0
-	fi
+	esac
