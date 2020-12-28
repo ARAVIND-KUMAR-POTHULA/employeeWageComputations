@@ -8,6 +8,7 @@ empRatePerHr=20
 numWorkingDays=20
 days=1
 empHours=0
+declare -A dailyWage
 function empWorkHours() {
 	local empCheck=$1
 	 case $empCheck in
@@ -28,9 +29,10 @@ do
         empCheck=$((RANDOM%3))
 	empHours="$( empWorkHours $empCheck )"
 	dailySalary=$(( empHours*empRatePerHr ))
-	dailyWage[ $((days-1)) ]=$dailySalary
+	dailyWage["day $days"]=$dailySalary
 	totalSalary=$(( totalSalary+dailySalary ))
 	days=$(( days+1 ))
 done
+echo ${!dailyWage[@]}
 echo ${dailyWage[@]}
 echo $totalSalary
