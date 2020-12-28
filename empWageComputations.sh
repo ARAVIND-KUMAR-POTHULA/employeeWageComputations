@@ -1,10 +1,12 @@
 #! /bin/bash -x
 isPresent=1
 isAbsent=0
+wagePerHour=20
+fullTimeHours=8
 employeeCheck=$(( RANDOM%2 ))
 	if (( $employeeCheck==$isPresent ))
 	then
-		echo "EMPLOYEE IS PRESENT"
+		dailyWage=$(( wagePerHour*fullTimeHours ))
 	else
-		echo "EMPLOYEE IS ABSENT"
+		dailyWage=0
 	fi
